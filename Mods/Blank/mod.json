@@ -5,5 +5,8 @@
     "repository":"none",
     "main":"mod.js",
     "template":"blank.html",
+    "selectors":[
+        "Blank"
+    ],
     "settings": {}
 }

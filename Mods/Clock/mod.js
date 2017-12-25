@@ -43,4 +43,8 @@ script.init = function() {
     setInterval(script.update, 1000);
 }
 
+script.activated = function(data) {
+    
+}
+
 script;

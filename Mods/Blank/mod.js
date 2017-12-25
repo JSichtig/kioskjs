@@ -13,6 +13,11 @@ script.init = function() {
     
 }
 
+// activated function. called upon usage of toggleActive
+script.activated = function(data) {
+    
+}
+
 // test functions and variables
 script.testVal = "test";
 script.test = function(){

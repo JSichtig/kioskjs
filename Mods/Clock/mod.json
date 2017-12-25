@@ -5,5 +5,9 @@
     "repository":"none",
     "main":"mod.js",
     "template":"clock.html",
+    "selectors": [
+        "Time",
+        "Clock"
+    ],
     "settings": {}
 }

@@ -5,7 +5,7 @@ global.kioskjs = {};
 
 // ###################### General purpose Functions #########################
 
-kioskjs.toggleActive = function(mod){
+kioskjs.toggleActive = function(mod,data){
     var _mod = mod;
     if(typeof mod === 'string'){
         // find mod with name
@@ -15,6 +15,7 @@ kioskjs.toggleActive = function(mod){
         cmod.script.$assigned.addClass("d-none");
     });
     mod.script.$assigned.removeClass("d-none");
+    mod.script.activated(data);
 }
 kioskjs.getModByName = function(name){
     var ret = null;
@@ -23,6 +24,21 @@ kioskjs.getModByName = function(name){
             ret = mod;
     });
     return ret;
+}
+kioskjs.getModBySelector = function(input){
+    // selectors do not really allow for semantic sentences
+    // will simply search for keywords in a sentence right now and choose the best match
+    // with the help of a score system . . .
+    var scores = [];
+    kioskjs.mods.forEach(function(mod, index){
+        var matches = [];
+        matches = mod.selectors.filter(sel => input.toUpperCase().indexOf(sel.toUpperCase()) > -1);
+        scores.push({"mod": mod, "matches": matches, "score": matches.length});
+    });
+    scores.sort(function(a, b){ 
+        return b.score - a.score; 
+    });
+    return scores.length > 0 ? scores[0].mod : undefined;
 }
 function getDirectories(path) {
     return fs.readdirSync(path).filter(function (file) {
@@ -85,9 +101,9 @@ $("#terminalForm").on("change", function(event){
 $("#terminalForm").on("submit", function(event){
     event.preventDefault();
     // load proper mod
-    var mod = kioskjs.getModByName($("#terminalForm #terminal").val());
+    var mod = kioskjs.getModBySelector($("#terminalForm #terminal").val());
     if(mod !== null)
-        kioskjs.toggleActive(mod);
+        kioskjs.toggleActive(mod, $("#terminalForm #terminal").val());
     // empty
     $("#terminalForm #terminal").val("");
 });
