@@ -1,0 +1,89 @@
+/*
+    COLOR PALETTE:
+        1: #CD4642
+        2: #EDB0A6
+        3: #F9F9F9
+        4: #6CA3B7
+        5: #24222C
+*/
+
+
+body, html{
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
+    background-color: #24222C;
+    color: #F9F9F9;
+}
+
+#terminal {
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid #CD4642;
+    border-radius: 0px;
+    color: #F9F9F9;
+    overflow: none;
+    box-sizing: border-box;
+}
+
+#terminal::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    
+}
+
+/* reusables */
+
+.margin-top {
+    margin-top: 15px;
+}
+.margin-top-2x {
+    margin-top: 30px;
+}
+
+.margin-bottom {
+    margin-bottom: 15px;
+}
+.margin-bottom-2x {
+    margin-bottom: 30px;
+}
+
+.color-1 {
+    color: #CD4642;
+}
+.color-2 {
+    color: #EDB0A6;
+}
+.color-3 {
+    color: #F9F9F9;
+}
+.color-4 {
+    color: #6CA3B7;
+}
+.color-5 {
+    color: #24222C;
+}
+
+/* remove glows */
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}

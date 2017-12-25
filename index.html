@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link href="Frontend/CSS/bootstrap.min.css" rel="stylesheet">
+		<link href="Frontend/CSS/kioskjs.css" rel="stylesheet">
+		<title>Kiosk.js</title>
+	</head>
+	<body>
+		<header class="header">
+			<div class="container">
+				<form id="terminalForm">
+					<div class="form-group margin-top-2x margin-bottom-2x" id="input">
+						<input type="text" class="form-control form-control-lg" id="terminal" placeholder="What's the matter?">
+					</div>
+				</form>
+			</div>
+		</header>
+		<main role="main">
+			<div class="container" id="assignedMods">
+				<!-- Contains mods -->
+			</div>
+		</main>
+		<script>
+			global.$ = global.jQuery = require('./Frontend/JS/jquery.min.js');
+			$(document).ready(function(){
+				require('./renderer.js')
+			});
+		</script>
+	</body>
+</html>

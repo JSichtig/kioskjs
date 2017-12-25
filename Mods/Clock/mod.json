@@ -1,0 +1,9 @@
+{
+    "name":"Clock",
+    "author":"Joshua Sichtig",
+    "version":"1.0.0",
+    "repository":"none",
+    "main":"mod.js",
+    "template":"clock.html",
+    "settings": {}
+}

@@ -1,0 +1,21 @@
+{
+  "name": "kiosk.js",
+  "version": "1.0.0",
+  "description": "An all-purpose, module based kiosk application.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "none",
+  "keywords": [
+    "Kiosk",
+    "Modular",
+    "Misc",
+    "Smart"
+  ],
+  "author": "Joshua Sichtig",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.7.8"
+  }
+}
