@@ -72,23 +72,28 @@ kioskjs.mods = [];
 installedMods.forEach(function(mod){
     // read mod.js
     var modjson = JSON.parse(fs.readFileSync(__dirname+'/Mods/'+mod+'/mod.json', 'utf8'));
-    modjson.path = __dirname+'/Mods/'+mod+'/';
+    modjson.path = __dirname+'/Mods/'+mod;
     kioskjs.mods.push(modjson);
 });
+console.log(kioskjs.mods);
 // evaluate given mods and assign the script objects to the kioskjs.mods.script
 kioskjs.mods.forEach(function(mod,index,array){
+    mod.loaded = false;
+
     console.log("Trying to eval() " + mod.name);
-    var scriptFile = mod.path+mod.main;
+    var scriptFile = mod.path+"/"+mod.main;
     var script = fs.readFileSync(scriptFile, 'utf8');
     mod.script = eval(script);
 
     // parse mod template and add to dom
-    var templateFile = mod.path+mod.template;
+    var templateFile = mod.path+"/"+mod.template;
     var template = fs.readFileSync(templateFile, 'utf8');
     $("#assignedMods").append("<div class='d-none' id='mod_"+mod.name+"'></div>");
     $("#mod_"+mod.name).append(template);
     mod.script.$assigned = $("#mod_"+mod.name);
     mod.script.me = mod;
+});
+kioskjs.mods.forEach(function(mod){
     mod.script.init();
 });
 
