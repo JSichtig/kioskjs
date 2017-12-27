@@ -41,6 +41,7 @@ kioskjs.getModBySelector = function(input){
     });
     return scores.length > 0 ? scores[0].mod : null;
 }
+
 function getDirectories(path) {
     return fs.readdirSync(path).filter(function (file) {
         return fs.statSync(path+'/'+file).isDirectory();
@@ -54,6 +55,8 @@ function hasModJson(path) {
     });
     return _hasModJson;
 }
+
+
 
 // ###################### Finding and registering mods #########################
 
@@ -113,4 +116,35 @@ $("#terminalForm").on("submit", function(event){
     // empty
     $("#terminalForm #terminal").val("");
 });
+
+// Drag and dropping mod.zip files for easy mod installation.
+
+// listen to drag and dropping of files
+var $html = $("html");
+var domHTML = $html[0];
+domHTML.ondragover = () => {
+    if($("#dragFile").attr("data-drag-file") != "true")
+        $("#dragFile").attr("data-drag-file","true");
+    return false;
+};
+domHTML.ondragleave = () => {
+    if($("#dragFile").attr("data-drag-file") != "false")
+        $("#dragFile").attr("data-drag-file","false");
+    return false;
+};
+domHTML.ondragend = () => {
+    return false;
+};
+domHTML.ondrop = (e) => {
+    e.preventDefault();
+    for (let f of e.dataTransfer.files) {
+        console.log('File(s) you dragged here: ', f.path)
+        // dropped file, check if its a .zip
+        
+    }
+    return false;
+};
+
+
+
 
