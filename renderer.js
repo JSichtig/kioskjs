@@ -1,5 +1,6 @@
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
+const unzip = require('unzip');
 
 global.kioskjs = {};
 
@@ -55,8 +56,6 @@ function hasModJson(path) {
     });
     return _hasModJson;
 }
-
-
 
 // ###################### Finding and registering mods #########################
 
@@ -137,11 +136,34 @@ domHTML.ondragend = () => {
 };
 domHTML.ondrop = (e) => {
     e.preventDefault();
+    var amountFiles = e.dataTransfer.files.length;
+    var added = 0;
+    var skipped = 0;
     for (let f of e.dataTransfer.files) {
-        console.log('File(s) you dragged here: ', f.path)
-        // dropped file, check if its a .zip
-        
+        console.log(f);
+        // only allow zipped types
+        if(f.type !== "application/x-zip-compressed"){
+            addedMod(true);
+            continue;
+        }
+        /* Parse .zip file. Extract to Mods folder */
+        var modReader = fs.createReadStream(f.path);
+        modReader.pipe(unzip.Extract({ path: 'Mods/' }))
+        modReader.on('close', function(){
+            addedMod(false);
+        });
     }
+    function addedMod(skipping){
+        skipping ? skipped++ : added++;
+        if(added + skipped === amountFiles){
+            // done adding all 
+            // check if even one mod was a valid .zip, if yes -> reload app
+            if(added > 0)
+                location.reload();
+        }
+    }
+    if($("#dragFile").attr("data-drag-file") != "false")
+        $("#dragFile").attr("data-drag-file","false");
     return false;
 };
 

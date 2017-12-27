@@ -26,10 +26,6 @@ body, html{
     box-sizing: border-box;
 }
 
-#terminal::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    
-}
-
 /* reusables */
 
 .margin-top {
