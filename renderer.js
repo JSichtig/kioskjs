@@ -33,12 +33,13 @@ kioskjs.getModBySelector = function(input){
     kioskjs.mods.forEach(function(mod, index){
         var matches = [];
         matches = mod.selectors.filter(sel => input.toUpperCase().indexOf(sel.toUpperCase()) > -1);
-        scores.push({"mod": mod, "matches": matches, "score": matches.length});
+        if(matches.length > 0)
+            scores.push({"mod": mod, "matches": matches, "score": matches.length});
     });
     scores.sort(function(a, b){ 
         return b.score - a.score; 
     });
-    return scores.length > 0 ? scores[0].mod : undefined;
+    return scores.length > 0 ? scores[0].mod : null;
 }
 function getDirectories(path) {
     return fs.readdirSync(path).filter(function (file) {

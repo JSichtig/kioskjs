@@ -5,8 +5,8 @@ var script = {};
     Modifying any other object in the dom is discouraged
     as it may interfere with other modules.
 */
-script.$assigned = null;
-script.me = null;
+script.$assigned = undefined;
+script.me = undefined;
 
 // init functions. called upon loading
 script.init = function() {

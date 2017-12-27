@@ -12,8 +12,8 @@ var script = {};
     Modifying any other object in the dom is discouraged
     as it may interfere with other modules.
 */
-script.$assigned = null;
-script.me = null;
+script.$assigned = undefined;
+script.me = undefined;
 
 script.getTime = function(format){
     var date = new Date();
